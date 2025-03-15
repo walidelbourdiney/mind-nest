@@ -13,7 +13,7 @@ const Heading = () => {
         <img
           src={mainphoto}
           alt="relaxing photo"
-          className="w-full h-[70vh] rounded"
+          className="w-full h-[70vh] rounded-2xl -mt-4"
         />
         <div className="text-center text-black  drop-shadow-lg max-w-[80%] mx-auto absolute top-56  left-8/12 leading-loose ">
           <h2 className="text-4xl font-bold ">

@@ -32,7 +32,7 @@ const Journaling = () => {
 
   return (
     <div className="max-w-[1200px] mx-[auto] my-[50px] text-center">
-      <h1 className="text-[#4A90E2] text-2xl mb-6">
+      <h1 className="text-[#4A90E2] text-2xl mb-6 shadow-lg p-5">
         🌿 MindNest – Your Gentle Mood Journal
       </h1>
       <h3>How you feel right now?</h3>
@@ -54,8 +54,8 @@ const Journaling = () => {
         </p>
       </div>
       <h4 className="mb-6">
-        "Let your thoughts flow freely—this is a safe and gentle space for you
-        to express whatever is on your heart.💚
+        Let your thoughts flow freely—this is a safe and gentle space for you to
+        express whatever is on your heart💚
       </h4>
       <textarea
         rows="4"
