@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useWeatherStore from "../stores/useWeatherStore";
 
 const WeatherCheck = () => {
   const { fetchWeather, weatherData, error } = useWeatherStore();
   const [location, setLocation] = useState("");
+  const [isBouncing, setIsBouncing] = useState(false);
+
+  useEffect(() => {
+    if (weatherData) {
+      setIsBouncing(true);
+      const timer = setTimeout(() => {
+        setIsBouncing(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [weatherData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,21 +23,34 @@ const WeatherCheck = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="flex mx-auto  container justify-center mt-2"
+      >
         <input
+          className="w-full max-w-sm px-4 py-2 border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
           type="text"
           name="location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           placeholder="Enter city name"
         />
-        <button type="submit">Check Weather</button>
+        <button
+          className="px-5 py-2 bg-blue-600 text-white font-medium rounded-r-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          type="submit"
+        >
+          Check Weather
+        </button>
       </form>
 
       {error && <p className="error">{error}</p>}
 
       {weatherData && (
-        <div className="weather-info">
+        <div
+          className={`flex mx-auto  container justify-center mt-2 flex-col items-center ${
+            isBouncing ? "animate-bounce" : ""
+          } ease-in-out`}
+        >
           <h2>
             {weatherData.name}, {weatherData.sys?.country}
           </h2>
