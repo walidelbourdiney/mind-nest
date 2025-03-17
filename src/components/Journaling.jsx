@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { analyzeJournalEntry } from "../cohoreAI"; // Import AI function
 import ReactMarkdown from "react-markdown"; // Handle styling the AI response
 
@@ -6,7 +6,18 @@ const Journaling = () => {
   const [entry, setEntry] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resLoading, setResLoading] = useState(false);
   const [mood, setMood] = useState("");
+
+  useEffect(() => {
+    if (response) {
+      setResLoading(true);
+      const timer = setTimeout(() => {
+        setResLoading(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [response]);
 
   const feelings = [
     { name: "Happiness", emoji: "😊" },
@@ -31,9 +42,9 @@ const Journaling = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-12 p-6 text-center bg-[var(--color-bg)] rounded-xl shadow-lg">
-      <h1 className="text-3xl font-audiowide text-[var(--color-primary)] mb-4">
-        🌿 MoodNest – Your Gentle Mood Journal 🌿
+    <div className="max-w-5xl mx-auto my-12 p-6 text-center bg-[var(--color-bg)] rounded-xl shadow-lg">
+      <h1 className="text-2xl font-audiowide text-[var(--color-primary)] mb-4">
+        🌿 Mood Nest – Your Gentle Mood Journal 🌿
       </h1>
 
       <h3 className="text-lg text-[var(--color-text)] mb-4">
@@ -84,7 +95,11 @@ const Journaling = () => {
           <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">
             🔮 A Gentle Perspective:
           </h3>
-          <div className="bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed">
+          <div
+            className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed ${
+              resLoading ? "animate-pulse" : ""
+            } duration-1000`}
+          >
             <ReactMarkdown>{response}</ReactMarkdown>
           </div>
         </div>
