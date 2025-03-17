@@ -81,7 +81,6 @@ const JournalingHistory = () => {
             </button>
             {/* Timestamp */}
             <p className="text-sm text-[var(--color-text)] italic bg-accent p-2 rounded-2xl">
-              Logged on:{" "}
               {format(new Date(note.timestamp), "MMM dd, yyyy HH:mm")}
             </p>
           </div>
