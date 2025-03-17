@@ -32,8 +32,8 @@ const Journaling = () => {
 
   return (
     <div className="max-w-[1200px] mx-[auto] my-[50px] text-center">
-      <h1 className="text-[#4A90E2] text-2xl mb-6 shadow-lg p-5">
-        🌿 MindNest – Your Gentle Mood Journal
+      <h1 className="text-[#4A90E2] text-2xl mb-6 shadow-lg p-5 font-audiowide">
+        🌿 MindNest – Your Gentle Mood Journal 🌿
       </h1>
       <h3>How you feel right now?</h3>
       <div className="flex flex-wrap justify-center gap-4 p-6  rounded-xl shadow-lg mb-6">

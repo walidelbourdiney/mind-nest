@@ -1,6 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Geist+Mono:wght@100..900&family=Tektur:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Audiowide&family=Geist+Mono:wght@100..900&family=Lobster&family=Tektur:wght@400..900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-Mono: "Geist Mono", "sans-serif";
+  --font-audiowide: "Audiowide", sans-serif;
+
+  --color-primary: #004225;
+  --color-secondary: #007a5e;
+  --color-accent: #c5a880;
+  --color-bg: #f8f9f3;
+  --color-text: #1c1c1c;
+}
 
 @layer base {
   h1,
@@ -9,10 +20,9 @@
   h4,
   h5,
   h6 {
-    font-family: "Playfair Display", serif !important;
+    /* font-family: Mono, serif !important; */
   }
   body {
-    font-family: "Lora", serif !important;
-    background-color: #f5ede1;
+    font-family: "Geist Mono", "sans-serif";
   }
 }
