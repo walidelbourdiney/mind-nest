@@ -66,16 +66,12 @@ export async function analyzeJournalEntry(entry) {
     // Prepare the prompt
     const prompt = `${SYSTEM_PROMPT}\n\nUser's Journal Entry:\n${sanitizedEntry}`;
 
-    console.log("Sending request to Cohere AI with prompt:", prompt);
-
     const response = await cohere.chat({
       model: "command-r",
       message: prompt,
       temperature: 0.7,
       max_tokens: 1024,
     });
-
-    console.log("AI Response:", response);
 
     return (
       response.text ||

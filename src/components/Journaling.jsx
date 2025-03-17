@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { analyzeJournalEntry } from "../cohoreAI"; // Import AI function
 import ReactMarkdown from "react-markdown"; // Handle styling the AI response
+import useNotesStore from "../stores/useNoteStore"; // import the note store to store and manipulate the response&mood
 
 const Journaling = () => {
+  const { addNote } = useNotesStore();
+
   const [entry, setEntry] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,6 +37,7 @@ const Journaling = () => {
     try {
       const aiResponse = await analyzeJournalEntry(entry);
       setResponse(aiResponse);
+      addNote(aiResponse, mood);
     } catch (error) {
       console.error("AI Error:", error);
       setResponse("Oops! Something went wrong. Please try again. 💙");

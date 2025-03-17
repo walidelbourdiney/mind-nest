@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import WeatherCheck from "./components/WeatherCheck";
+import JournalongHistory from "./components/JournalongHistory";
 
 function App() {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Heading />} />
         <Route path="/journaling" element={<Journaling />} />
         <Route path="/weather" element={<WeatherCheck />} />
+        <Route path="/history" element={<JournalongHistory />} />
       </Route>
     )
   );

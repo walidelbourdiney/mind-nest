@@ -12,10 +12,12 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
     "cohere-ai": "^7.16.0",
+    "date-fns": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.3.0",
+    "recharts": "^2.15.1",
     "rehype-raw": "^7.0.0",
     "tailwindcss": "^4.0.14",
     "zustand": "^5.0.3"
