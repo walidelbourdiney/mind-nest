@@ -96,7 +96,7 @@ const JournalingHistory = () => {
       ) : (
         <h2 className=" text-primary text-xl mt-72">
           Your journey starts here once you begin journaling, your history will
-          appear.
+          appear. 😊
         </h2>
       )}
     </div>
