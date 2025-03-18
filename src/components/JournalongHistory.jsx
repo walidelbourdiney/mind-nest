@@ -5,7 +5,7 @@ import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 import { format } from "date-fns"; // For formatting timestamps
 
 const JournalingHistory = () => {
-  const { deleteNote, notes } = useNotesStore();
+  const { deleteNote, notes, clearNotes } = useNotesStore();
 
   const moodCounts = notes.reduce((acc, note) => {
     acc[note.mood] = (acc[note.mood] || 0) + 1;
@@ -86,6 +86,14 @@ const JournalingHistory = () => {
           </div>
         </div>
       ))}
+      {notes.length > 0 && (
+        <button
+          onClick={clearNotes}
+          className="bg-[var(--color-primary)] text-[var(--color-accent)] px-6 py-3 rounded-md  cursor-pointer  shadow-md hover:bg-[var(--color-secondary)] transition hover:text-black"
+        >
+          Clear All Notes!
+        </button>
+      )}
     </div>
   );
 };
