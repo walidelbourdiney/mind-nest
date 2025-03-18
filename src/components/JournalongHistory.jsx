@@ -33,7 +33,7 @@ const JournalingHistory = () => {
           <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-4 ">
             Mood Distribution
           </h2>
-          //Pie Chart
+          {/* Pie Chart */}
           <div className="w-full max-w-2xl ">
             <ResponsiveContainer width="100%" height={400}>
               <PieChart>
@@ -60,7 +60,7 @@ const JournalingHistory = () => {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          // Journaling Notes
+          {/* Journaling Notes */}
           {notes.map((note) => (
             <div
               key={note.id}
