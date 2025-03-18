@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown"; // for styling text property
 import useNotesStore from "../stores/useNoteStore";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 import { format } from "date-fns"; // For formatting timestamps

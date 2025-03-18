@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import WeatherCheck from "./components/WeatherCheck";
 import JournalongHistory from "./components/JournalongHistory";
+import Fav from "./components/Fav";
 
 function App() {
   const router = createBrowserRouter(
@@ -19,6 +20,7 @@ function App() {
         <Route path="/journaling" element={<Journaling />} />
         <Route path="/weather" element={<WeatherCheck />} />
         <Route path="/history" element={<JournalongHistory />} />
+        <Route path="/fav" element={<Fav />} />
       </Route>
     )
   );

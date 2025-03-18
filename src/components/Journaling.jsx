@@ -2,15 +2,24 @@ import React, { useState, useEffect } from "react";
 import { analyzeJournalEntry } from "../cohoreAI"; // Import AI function
 import ReactMarkdown from "react-markdown"; // Handle styling the AI response
 import useNotesStore from "../stores/useNoteStore"; // import the note store to store and manipulate the response&mood
+import { FaHeart } from "react-icons/fa"; // FontAwesome icon
 
 const Journaling = () => {
-  const { addNote } = useNotesStore();
+  const { addNote, addFav } = useNotesStore();
 
   const [entry, setEntry] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [resLoading, setResLoading] = useState(false);
   const [mood, setMood] = useState("");
+  const [favorites, setFavorites] = useState(false);
+
+  const toggleFavorite = () => {
+    if (!favorites) {
+      setFavorites(true);
+      addFav(response, mood);
+    } else return;
+  };
 
   useEffect(() => {
     if (response) {
@@ -96,9 +105,17 @@ const Journaling = () => {
 
       {response && (
         <div className="mt-6 p-6 bg-[var(--color-bg)] rounded-lg shadow-md text-left">
-          <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">
-            🔮 A Gentle Perspective:
-          </h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">
+              🔮 A Gentle Perspective:
+            </h3>
+            <FaHeart
+              className={`cursor-pointer text-2xl transition ${
+                favorites ? "text-red-500" : "text-gray-400"
+              }`}
+              onClick={toggleFavorite}
+            />
+          </div>
           <div
             className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed ${
               resLoading ? "animate-pulse" : ""

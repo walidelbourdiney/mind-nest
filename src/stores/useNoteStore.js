@@ -36,9 +36,17 @@ const useNotesStore = create(
         })),
 
       // Add a note to favorites
-      addFav: (note) =>
+      addFav: (text, mood) =>
         set((state) => ({
-          fav: [...state.fav, note],
+          fav: [
+            ...state.fav,
+            {
+              id: Date.now(),
+              text,
+              mood,
+              timestamp: Date.now(),
+            },
+          ],
         })),
 
       // Remove a note from favorites
