@@ -28,71 +28,76 @@ const JournalingHistory = () => {
 
   return (
     <div className="flex flex-col container justify-center items-center mx-auto gap-6 p-4">
-      <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-4 ">
-        Mood Distribution
-      </h2>
-
-      {/* Pie Chart */}
-      <div className="w-full max-w-2xl ">
-        <ResponsiveContainer width="100%" height={400}>
-          <PieChart>
-            <Pie
-              data={chartData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={150}
-              fill="#8884d8"
-              label={({ name, percent }) =>
-                `${name} (${(percent * 100).toFixed(0)}%)`
-              }
-            >
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* Journaling Notes */}
-      {notes.map((note) => (
-        <div
-          key={note.id}
-          className="flex flex-col container justify-center items-center shadow-2xl bg-bg gap-6 text-left p-4 rounded-lg"
-        >
-          <h3 className="text-xl font-semibold text-[var(--color-primary)]">
-            {note.mood}
-          </h3>
-          <div className="prose max-w-none text-[var(--color-text)]">
-            <ReactMarkdown>{note.text}</ReactMarkdown>
+      {notes.length > 0 ? (
+        <>
+          <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-4 ">
+            Mood Distribution
+          </h2>
+          //Pie Chart
+          <div className="w-full max-w-2xl ">
+            <ResponsiveContainer width="100%" height={400}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={150}
+                  fill="#8884d8"
+                  label={({ name, percent }) =>
+                    `${name} (${(percent * 100).toFixed(0)}%)`
+                  }
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
-          <div className="flex justify-between items-center  w-[90%] mt-4">
-            <button
-              onClick={() => deleteNote(note.id)}
-              className="bg-[var(--color-primary)] text-[var(--color-accent)] px-6 py-3 rounded-md cursor-pointer shadow-md hover:bg-[var(--color-secondary)] transition hover:text-black"
+          // Journaling Notes
+          {notes.map((note) => (
+            <div
+              key={note.id}
+              className="flex flex-col container justify-center items-center shadow-2xl bg-bg gap-6 text-left p-4 rounded-lg"
             >
-              Delete
-            </button>
-            {/* Timestamp */}
-            <p className="text-sm text-[var(--color-text)] italic bg-accent p-2 rounded-2xl">
-              {format(new Date(note.timestamp), "MMM dd, yyyy HH:mm")}
-            </p>
-          </div>
-        </div>
-      ))}
-      {notes.length > 0 && (
-        <button
-          onClick={clearNotes}
-          className="bg-[var(--color-primary)] text-[var(--color-accent)] px-6 py-3 rounded-md  cursor-pointer  shadow-md hover:bg-[var(--color-secondary)] transition hover:text-black"
-        >
-          Clear All Notes!
-        </button>
+              <h3 className="text-xl font-semibold text-[var(--color-primary)]">
+                {note.mood}
+              </h3>
+              <div className="prose max-w-none text-[var(--color-text)]">
+                <ReactMarkdown>{note.text}</ReactMarkdown>
+              </div>
+              <div className="flex justify-between items-center  w-[90%] mt-4">
+                <button
+                  onClick={() => deleteNote(note.id)}
+                  className="bg-[var(--color-primary)] text-[var(--color-accent)] px-6 py-3 rounded-md cursor-pointer shadow-md hover:bg-[var(--color-secondary)] transition hover:text-black"
+                >
+                  Delete
+                </button>
+                {/* Timestamp */}
+                <p className="text-sm text-[var(--color-text)] italic bg-accent p-2 rounded-2xl">
+                  {format(new Date(note.timestamp), "MMM dd, yyyy HH:mm")}
+                </p>
+              </div>
+            </div>
+          ))}
+          <button
+            onClick={clearNotes}
+            className="bg-[var(--color-primary)] text-[var(--color-accent)] px-6 py-3 rounded-md  cursor-pointer  shadow-md hover:bg-[var(--color-secondary)] transition hover:text-black"
+          >
+            Clear All Notes!
+          </button>
+        </>
+      ) : (
+        <h2 className=" text-primary text-xl mt-72">
+          Your journey starts here once you begin journaling, your history will
+          appear.
+        </h2>
       )}
     </div>
   );
