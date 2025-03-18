@@ -28,12 +28,12 @@ const JournalingHistory = () => {
 
   return (
     <div className="flex flex-col container justify-center items-center mx-auto gap-6 p-4">
-      <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-4">
+      <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-4 ">
         Mood Distribution
       </h2>
 
       {/* Pie Chart */}
-      <div className="w-full max-w-lg">
+      <div className="w-full max-w-2xl ">
         <ResponsiveContainer width="100%" height={400}>
           <PieChart>
             <Pie
