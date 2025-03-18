@@ -16,5 +16,6 @@
 @layer base {
   body {
     font-family: "Geist Mono", "sans-serif";
+    background-color: rgba(248, 249, 243, 0.75);
   }
 }

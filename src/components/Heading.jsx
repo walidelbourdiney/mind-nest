@@ -12,7 +12,7 @@ const Heading = () => {
         <main className="container mx-auto relative flex flex-col justify-between items-center ">
           <div className=" bg-[var(--color-bg-transparent)] text-[var(--color-text)] drop-shadow-lg max-w-[90%] md:max-w-[60%] p-6 md:p-8 rounded-xl text-center">
             <h2 className="text-3xl sm:text-4xl font-bold font-Mono text-[var(--color-secondary)] leading-relaxed">
-              Welcome to <br /> MoodNest 🌿 Your <br /> Safe Space to <br />
+              Welcome to <br /> Mood Nest 🌿 Your <br /> Safe Space to <br />
               Reflect
             </h2>
             <p className="text-lg sm:text-xl font-Mono text-[var(--color-accent)] mt-3">
