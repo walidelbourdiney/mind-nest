@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link, Links } from "react-router-dom";
 
 const SiteLayout = () => {
   return (
     <>
       <header className="">
         <nav className=" py-5 flex justify-between items-center">
-          <h2 className="font-audiowide text-2xl text-primary">Mood Nest</h2>
+          <Link to="/">
+            <h2 className="font-audiowide text-2xl text-primary">Mood Nest</h2>
+          </Link>
           <div className="links flex justify-between items-center w-4/12">
             <NavLink
               to="/"
