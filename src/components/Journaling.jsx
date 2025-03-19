@@ -55,7 +55,7 @@ const Journaling = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto my-12 p-6 text-center bg-[var(--color-bg)] rounded-xl shadow-lg">
+    <div className="max-w-5xl mx-auto my-24 p-6 text-center bg-[var(--color-bg)] rounded-xl shadow-lg">
       <h1 className="text-2xl font-audiowide text-[var(--color-primary)] mb-4">
         🌿 Mood Nest – Your Gentle Mood Journal 🌿
       </h1>
