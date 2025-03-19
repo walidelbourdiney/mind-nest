@@ -4,7 +4,7 @@ import ButtonJournaling from "./ButtonJournaling";
 const Heading = () => {
   return (
     <>
-      <div className="Home  h-screen flex flex-col justify-between bg-bg">
+      <div className="Home   flex flex-col justify-between bg-bg">
         <header className="text-center text-7xl sm:text-8xl m container mx-auto font-audiowide text-[var(--color-primary)] drop-shadow-lg">
           <h1>Mood Nest</h1>
         </header>
@@ -24,7 +24,7 @@ const Heading = () => {
             <ButtonJournaling />
           </div>
         </main>
-        <footer className="text-lg sm:text-xl font-Mono text-primary mt-3 text-center  container mx-auto rounded py-2">
+        <footer className="text-lg sm:text-xl font-Mono text-primary mt-40 text-center  container mx-auto rounded py-2">
           <p>
             Your mind deserves kindness. Let Mood Nest be your sanctuary for
             self-care and growth.

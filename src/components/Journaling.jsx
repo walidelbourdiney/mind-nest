@@ -14,7 +14,7 @@ const Journaling = () => {
   const [mood, setMood] = useState("");
   const [favorites, setFavorites] = useState(false);
 
-  const toggleFavorite = () => {
+  const addFavorite = () => {
     if (!favorites) {
       setFavorites(true);
       addFav(response, mood);
@@ -113,7 +113,7 @@ const Journaling = () => {
               className={`cursor-pointer text-2xl transition ${
                 favorites ? "text-red-500" : "text-gray-400"
               }`}
-              onClick={toggleFavorite}
+              onClick={addFavorite}
             />
           </div>
           <div

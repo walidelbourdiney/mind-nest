@@ -4,8 +4,8 @@ import { Outlet, NavLink, Link } from "react-router-dom";
 const SiteLayout = () => {
   return (
     <>
-      <header className="">
-        <nav className=" py-5 flex justify-between items-center px-4">
+      <header>
+        <nav className=" py-5 flex justify-between items-center px-4 ">
           <Link to="/">
             <h2 className="font-audiowide text-2xl text-primary">Mood Nest</h2>
           </Link>
