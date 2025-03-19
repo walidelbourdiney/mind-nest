@@ -15,3 +15,5 @@ const iconCode = weatherData.weather[0].icon; // "01d"
 const sunrise = weatherData.sys.sunrise; // 1684895634 (Unix Timestamp)
 const sunset = weatherData.sys.sunset; // 1684950012 (Unix Timestamp)
 const cloudiness = weatherData.clouds.all; // 0% weatherData.weather[0].icon
+
+//test rename folder eco system
