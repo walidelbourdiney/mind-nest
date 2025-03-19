@@ -108,7 +108,7 @@ const JournalingHistory = () => {
                 <h3 className="text-xl font-semibold text-[var(--color-primary)]">
                   {note.mood}
                 </h3>
-                <div className="prose max-w-none text-[var(--color-text)]">
+                <div className="prose max-w-none text-[var(--color-text)] px-4">
                   <ReactMarkdown>{note.text}</ReactMarkdown>
                 </div>
                 <div className="flex justify-between items-center  w-[90%] mt-4">

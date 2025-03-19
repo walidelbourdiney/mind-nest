@@ -26,7 +26,7 @@ const Heading = () => {
         </main>
         <footer className="text-lg sm:text-xl font-Mono text-primary mt-40 text-center  container mx-auto rounded py-2">
           <p>
-            Your mind deserves kindness. Let Mood Nest be your sanctuary for
+            Your mind deserves kindness. Let Mood Nest be your retreat for
             self-care and growth.
           </p>
         </footer>
