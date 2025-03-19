@@ -6,7 +6,7 @@ const Heading = () => {
     <>
       <div className="Home   flex flex-col justify-between bg-bg">
         <header className="text-center text-7xl sm:text-8xl m container mx-auto font-audiowide text-[var(--color-primary)] drop-shadow-lg">
-          <h1>Mood Nest</h1>
+          <h1 className="mt-10">Mood Nest</h1>
         </header>
 
         <main className="container mx-auto relative flex flex-col justify-between items-center ">
