@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactMarkdown from "react-markdown"; // for styling text property
 import useNotesStore from "../stores/useNoteStore";
 import { format } from "date-fns"; // For formatting timestamps
@@ -10,12 +10,49 @@ import { format } from "date-fns"; // For formatting timestamps
 //     timestamp: Date.now(),
 //   }
 const Fav = () => {
+  const feelings = [
+    { name: "Happiness", emoji: "😊" },
+    { name: "Sadness", emoji: "😢" },
+    { name: "Anger", emoji: "😠" },
+    { name: "Fear", emoji: "😨" },
+    { name: "Surprise", emoji: "😯" },
+    { name: "Disgust", emoji: "🤢" },
+  ];
   const { deleteFav, fav } = useNotesStore();
+
+  const [selectedMood, setSelectedMood] = useState("");
+
+  const filteredElements = selectedMood
+    ? fav.filter((note) => note.mood === selectedMood)
+    : fav;
+
   return (
     <div className="flex flex-col container justify-center items-center mx-auto gap-6 p-4">
       {fav.length > 0 ? (
         <>
-          {fav
+          <h3 className="text-lg text-[var(--color-text)] mb-4">
+            Filter your journal favorites by mood?
+          </h3>
+
+          <div className="flex flex-wrap justify-center gap-4 p-4 bg-[var(--color-bg-transparent)] rounded-lg shadow-md">
+            {feelings.map(({ name, emoji }) => (
+              <button
+                key={name}
+                onClick={() => setSelectedMood(name)}
+                className="w-16 h-16 flex items-center justify-center text-2xl rounded-full border-2 border-[var(--color-secondary)] bg-[var(--color-bg)] shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-[var(--color-secondary)] hover:text-white focus:ring-4 focus:ring-[var(--color-secondary)] active:bg-[var(--color-primary)]"
+              >
+                {emoji}
+              </button>
+            ))}
+          </div>
+
+          <p className="mt-4 text-xl text-[var(--color-accent)]">
+            {selectedMood
+              ? `Showing journal entries where you felt ${selectedMood.toLowerCase()}. Take a moment to reflect on your journey.`
+              : "Tap an emoji to view journal entries matching that mood."}
+          </p>
+
+          {filteredElements
             .slice()
             .reverse()
             .map((note) => (
