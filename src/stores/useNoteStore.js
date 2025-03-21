@@ -56,7 +56,11 @@ const useNotesStore = create(
         })),
 
       // Clear all notes and favorites
-      clearNotes: () => set(() => ({ notes: [], fav: [] })),
+      clearNotes: () => {
+        if(window.confirm('Are you sure you want to delete all the entries history')){
+          set(() => ({ notes: [], fav: [] }))
+        }
+      },
     }),
     {
       name: "MoodNest_Notes",
