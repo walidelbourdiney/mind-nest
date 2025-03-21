@@ -83,7 +83,7 @@ const Fav = () => {
         </>
       ) : (
         <h2 className=" text-primary text-xl mt-72">
-          Your favorites will appear here—save the moments that resonate with
+          Your favorites will appear here, save the moments that resonate with
           you. 😊
         </h2>
       )}
