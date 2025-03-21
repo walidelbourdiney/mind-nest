@@ -24,8 +24,9 @@ const Journaling = () => {
   useEffect(() => {
     if (response) {
       setResLoading(true);
-      targetRef.current.scrollIntoView({ behavior: "smooth" });
-      const timer = setTimeout(() => {
+      setTimeout(() => {
+        targetRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 100); // Small delay to ensure rendering is done      const timer = setTimeout(() => {
         setResLoading(false);
       }, 3000);
       return () => clearTimeout(timer);
