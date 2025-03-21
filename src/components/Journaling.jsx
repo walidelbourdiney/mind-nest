@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { analyzeJournalEntry } from "../cohoreAI"; // Import AI function
 import ReactMarkdown from "react-markdown"; // Handle styling the AI response
 import useNotesStore from "../stores/useNoteStore"; // import the note store to store and manipulate the response&mood
@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa"; // FontAwesome icon
 
 const Journaling = () => {
   const { addNote, addFav } = useNotesStore();
-
+  const targetRef = useRef(null);
   const [entry, setEntry] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,7 @@ const Journaling = () => {
   useEffect(() => {
     if (response) {
       setResLoading(true);
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
       const timer = setTimeout(() => {
         setResLoading(false);
       }, 3000);
@@ -104,7 +105,10 @@ const Journaling = () => {
       </button>
 
       {response && (
-        <div className="mt-6 p-6 bg-[var(--color-bg)] rounded-lg shadow-md text-left">
+        <div
+          className="mt-6 p-6 bg-[var(--color-bg)] rounded-lg shadow-md text-left"
+          ref={targetRef}
+        >
           <div className="flex justify-between items-center">
             <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">
               🔮 A Gentle Perspective:
