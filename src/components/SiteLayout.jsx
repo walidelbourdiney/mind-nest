@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Outlet, NavLink, Link  } from "react-router-dom";
+import  { Toaster } from 'react-hot-toast';
 
 const SiteLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+    <Toaster/>
       <header className="py-5 px-4 sm:px-6 md:px-8 lg:px-12 bg-[var(--color-bg)] shadow-md">
         <nav className="flex justify-between items-center">
           <Link to="/">
