@@ -22,7 +22,7 @@ function App() {
           <Route path="/journaling" element={<Journaling />} />
           <Route path="/weather" element={<WeatherCheck />} />
           <Route path="/history" element={<JournalongHistory />} />
-          <Route path="/fav" element={<Fav />} />
+          <Route path="/favorites" element={<Fav />} />
         </Route>
       </Route>
     )
