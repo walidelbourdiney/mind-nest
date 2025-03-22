@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { analyzeJournalEntry } from "../cohoreAI"; // Import AI function
-import ReactMarkdown from "react-markdown"; // Handle styling the AI response
-import useNotesStore from "../stores/useNoteStore"; // import the note store to store and manipulate the response&mood
-import { FaHeart } from "react-icons/fa"; // FontAwesome icon
+import { analyzeJournalEntry } from "../cohoreAI";
+import ReactMarkdown from "react-markdown";
+import useNotesStore from "../stores/useNoteStore";
+import { FaHeart } from "react-icons/fa";
 
 const Journaling = () => {
   const { addNote, addFav } = useNotesStore();
@@ -18,18 +18,16 @@ const Journaling = () => {
     if (!favorites) {
       setFavorites(true);
       addFav(response, mood);
-    } else return;
+    }
   };
 
   useEffect(() => {
     if (response) {
       setResLoading(true);
-      const timer = setTimeout(() => {
-        setResLoading(false);
-      }, 4000);
+      const timer = setTimeout(() => setResLoading(false), 4000);
       const scrollTimer = setTimeout(() => {
-        targetRef.current.scrollIntoView({ behavior: "smooth" });
-      }, 100); // Small delay to ensure rendering is done
+        targetRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
       return () => {
         clearTimeout(timer);
         clearTimeout(scrollTimer);
@@ -66,16 +64,14 @@ const Journaling = () => {
         🌿 Mood Nest – Your Gentle Mood Journal 🌿
       </h1>
 
-      <h3 className="text-lg text-[var(--color-text)] mb-4">
-        How do you feel right now?
-      </h3>
+      <h3 className="text-lg text-[var(--color-text)] mb-4">How do you feel right now?</h3>
 
       <div className="flex flex-wrap justify-center gap-4 p-4 bg-[var(--color-bg-transparent)] rounded-lg shadow-md">
         {feelings.map(({ name, emoji }) => (
           <button
             key={name}
             onClick={() => setMood(name)}
-            className="w-16 h-16 flex items-center justify-center text-2xl rounded-full border-2 border-[var(--color-secondary)] bg-[var(--color-bg)] shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-[var(--color-secondary)] hover:text-white focus:ring-4 focus:ring-[var(--color-secondary)] active:bg-[var(--color-primary)]"
+            className={`w-16 h-16 flex items-center justify-center text-2xl rounded-full border-2 border-[var(--color-secondary)] bg-[var(--color-bg)] shadow-md transition-transform duration-300 hover:scale-110 hover:bg-[var(--color-secondary)] hover:text-white focus:ring-4 focus:ring-[var(--color-secondary)] active:bg-[var(--color-primary)] ${mood === name ? "ring-4 ring-[var(--color-primary)]" : ""}`}
           >
             {emoji}
           </button>
@@ -83,14 +79,11 @@ const Journaling = () => {
       </div>
 
       <p className="mt-4 text-xl text-[var(--color-accent)]">
-        {mood
-          ? `You're feeling ${mood.toLowerCase()}`
-          : "Tap an emoji to share your mood"}
+        {mood ? `You're feeling ${mood.toLowerCase()}` : "Tap an emoji to share your mood"}
       </p>
 
       <h4 className="mt-6 text-lg text-[var(--color-text)] leading-relaxed">
-        Let your thoughts flow freely—this is a safe and gentle space for you to
-        express whatever is on your heart 💚
+        Let your thoughts flow freely—this is a safe and gentle space for you to express whatever is on your heart 💚
       </h4>
 
       <textarea
@@ -110,26 +103,15 @@ const Journaling = () => {
       </button>
 
       {response && (
-        <div
-          className="mt-6 p-6 bg-[var(--color-bg)] rounded-lg shadow-md text-left"
-          ref={targetRef}
-        >
+        <div className="mt-6 p-6 bg-[var(--color-bg)] rounded-lg shadow-md text-left" ref={targetRef}>
           <div className="flex justify-between items-center">
-            <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">
-              🔮 A Gentle Perspective:
-            </h3>
+            <h3 className="text-xl font-semibold text-[var(--color-secondary)] mb-2">🔮 A Gentle Perspective:</h3>
             <FaHeart
-              className={`cursor-pointer text-2xl transition ${
-                favorites ? "text-red-500" : "text-gray-400"
-              }`}
+              className={`cursor-pointer text-2xl transition ${favorites ? "text-red-500" : "text-gray-400"}`}
               onClick={addFavorite}
             />
           </div>
-          <div
-            className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed ${
-              resLoading ? "animate-pulse" : ""
-            } duration-1000`}
-          >
+          <div className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed ${resLoading ? "animate-pulse" : ""} duration-1000`}>
             <ReactMarkdown>{response}</ReactMarkdown>
           </div>
         </div>
