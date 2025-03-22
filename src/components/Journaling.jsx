@@ -3,6 +3,7 @@ import { analyzeJournalEntry } from "../cohoreAI";
 import ReactMarkdown from "react-markdown";
 import useNotesStore from "../stores/useNoteStore";
 import { FaHeart } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 const Journaling = () => {
   const { addNote, addFav } = useNotesStore();
@@ -10,7 +11,6 @@ const Journaling = () => {
   const [entry, setEntry] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const [resLoading, setResLoading] = useState(false);
   const [mood, setMood] = useState("");
   const [favorites, setFavorites] = useState(false);
 
@@ -21,19 +21,6 @@ const Journaling = () => {
     }
   };
 
-  useEffect(() => {
-    if (response) {
-      setResLoading(true);
-      const timer = setTimeout(() => setResLoading(false), 4000);
-      const scrollTimer = setTimeout(() => {
-        targetRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-      return () => {
-        clearTimeout(timer);
-        clearTimeout(scrollTimer);
-      };
-    }
-  }, [response]);
 
   const feelings = [
     { name: "Happiness", emoji: "😊" },
@@ -51,9 +38,14 @@ const Journaling = () => {
       const aiResponse = await analyzeJournalEntry(entry);
       setResponse(aiResponse);
       addNote(aiResponse, mood);
+      toast('Analized successfully!!')
+      targetRef.current?.scrollIntoView({ behavior: "smooth" });
+
     } catch (error) {
       console.error("AI Error:", error);
       setResponse("Oops! Something went wrong. Please try again. 💙");
+      toast('something went wrong!!')
+
     }
     setLoading(false);
   };
@@ -111,7 +103,7 @@ const Journaling = () => {
               onClick={addFavorite}
             />
           </div>
-          <div className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed ${resLoading ? "animate-pulse" : ""} duration-1000`}>
+          <div className={`bg-[var(--color-bg-transparent)] p-4 rounded-lg border border-[var(--color-accent)] text-[var(--color-text)] text-lg leading-relaxed duration-1000`}>
             <ReactMarkdown>{response}</ReactMarkdown>
           </div>
         </div>

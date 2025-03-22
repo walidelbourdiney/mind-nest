@@ -19,7 +19,7 @@ const Heading = () => {
         </div>
 
         <div className="mt-12 sm:mt-16 md:mt-20">
-          <ButtonJournaling />
+          <ButtonJournaling/>
         </div>
       </main>
 
