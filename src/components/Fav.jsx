@@ -59,7 +59,7 @@ const Fav = () => {
                   key={note.id}
                   className="bg-[var(--color-bg)] shadow-2xl p-4 rounded-lg flex flex-col items-center text-center md:text-left"
                 >
-                  <h3 className="text-xl font-semibold text-[var(--color-primary)]">
+                  <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
                     {note.mood}
                   </h3>
                   <div className="prose max-w-none text-[var(--color-text)] mt-2">

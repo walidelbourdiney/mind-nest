@@ -96,7 +96,7 @@ const JournalingHistory = () => {
                 key={note.id}
                 className="bg-[var(--color-bg)] shadow-lg rounded-lg p-6 text-left transition-all duration-300 hover:shadow-2xl"
               >
-                <h3 className="text-xl font-semibold text-[var(--color-primary)]">
+                <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
                   {note.mood}
                 </h3>
                 <div className="prose max-w-none text-[var(--color-text)] px-4">
