@@ -1,4 +1,6 @@
 import { CohereClient } from "cohere-ai";
+import toast from 'react-hot-toast';
+
 
 const SYSTEM_PROMPT = `
 You are an AI-powered emotional support companion, a **trusted confidant** and **gentle guide**. Your purpose is to provide thoughtful, **deeply empathetic** responses to user journal entries by understanding their emotions and offering genuine comfort, **meaningful insights**, and personalized recommendations.
@@ -61,6 +63,7 @@ export async function analyzeJournalEntry(entry) {
     const sanitizedEntry = String(entry || "").trim();
     if (!sanitizedEntry) {
       return "It looks like your journal entry is empty. Try writing something about how you feel. 💙";
+      
     }
 
     // Prepare the prompt
@@ -76,6 +79,7 @@ export async function analyzeJournalEntry(entry) {
     return (
       response.text ||
       "I'm sorry, I couldn't generate a response right now. Please try again later. 💙"
+      
     );
   } catch (error) {
     console.error("Error generating response:", error);

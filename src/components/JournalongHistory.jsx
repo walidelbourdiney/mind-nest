@@ -12,6 +12,7 @@ const JournalingHistory = () => {
     { name: "Fear", emoji: "😨" },
     { name: "Surprise", emoji: "😯" },
     { name: "Disgust", emoji: "🤢" },
+    { name: "Neutral", emoji: "😐" },
   ];
 
   const { deleteNote, notes, clearNotes } = useNotesStore();
@@ -26,7 +27,7 @@ const JournalingHistory = () => {
     return acc;
   }, {});
 
-  const chartData = Object.entries(moodCounts).map(([mood, count]) => ({
+  const chartData = Object.entries(moodCounts).map(([mood , count]) => ({
     name: mood,
     value: count,
   }));

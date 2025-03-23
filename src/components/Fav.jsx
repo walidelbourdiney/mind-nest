@@ -11,6 +11,7 @@ const Fav = () => {
     { name: "Fear", emoji: "😨" },
     { name: "Surprise", emoji: "😯" },
     { name: "Disgust", emoji: "🤢" },
+    { name: "Neutral", emoji: "😐" },
   ];
 
   const { deleteFav, fav } = useNotesStore();

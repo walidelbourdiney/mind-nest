@@ -3,6 +3,7 @@ import { analyzeJournalEntry } from "../cohoreAI";
 import ReactMarkdown from "react-markdown";
 import useNotesStore from "../stores/useNoteStore";
 import { FaHeart } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 const Journaling = () => {
   const { addNote, addFav } = useNotesStore();
@@ -11,7 +12,7 @@ const Journaling = () => {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [resLoading, setResLoading] = useState(false);
-  const [mood, setMood] = useState("");
+  const [mood, setMood] = useState("Neutral");
   const [favorites, setFavorites] = useState(false);
 
   const addFavorite = () => {
@@ -51,9 +52,12 @@ const Journaling = () => {
       const aiResponse = await analyzeJournalEntry(entry);
       setResponse(aiResponse);
       addNote(aiResponse, mood);
+      setEntry("");
+
     } catch (error) {
       console.error("AI Error:", error);
       setResponse("Oops! Something went wrong. Please try again. 💙");
+      
     }
     setLoading(false);
   };
@@ -65,23 +69,31 @@ const Journaling = () => {
       </h1>
 
       <h3 className="text-lg text-[var(--color-text)] mb-4">How do you feel right now?</h3>
-
-      <div className="flex flex-wrap justify-center gap-4 p-4 bg-[var(--color-bg-transparent)] rounded-lg shadow-md">
-        {feelings.map(({ name, emoji }) => (
-          <button
-            key={name}
-            onClick={() => setMood(name)}
-            className={`w-16 h-16 flex items-center justify-center text-2xl rounded-full border-2 border-[var(--color-secondary)] bg-[var(--color-bg)] shadow-md transition-transform duration-300 hover:scale-110 hover:bg-[var(--color-secondary)] hover:text-white focus:ring-4 focus:ring-[var(--color-secondary)] active:bg-[var(--color-primary)] ${mood === name ? "ring-4 ring-[var(--color-primary)]" : ""}`}
-          >
-            {emoji}
-          </button>
-        ))}
-      </div>
-
-      <p className="mt-4 text-xl text-[var(--color-accent)]">
-        {mood ? `You're feeling ${mood.toLowerCase()}` : "Tap an emoji to share your mood"}
+      <p className="mt-4 text-lg text-[var(--color-accent)]">
+      {
+  mood === "Neutral"
+    ? "If you're feeling neutral, that's okay. You can start writing your journal right away, or choose an emoji that resonates with how you're feeling."
+    : mood
+    ? `You're feeling ${mood.toLowerCase()}`
+    : "Tap an emoji to share your mood"
+    }
       </p>
 
+      <div className="flex flex-wrap justify-center gap-4 p-4 bg-[var(--color-bg-transparent)] rounded-lg shadow-md">
+  {feelings.map(({ name , emoji }) => (
+    <button
+      key={name}
+      onClick={() => setMood(name)}
+      className={`w-16 h-16 flex items-center justify-center text-2xl rounded-full border-2 border-[var(--color-secondary)] bg-[var(--color-bg)] shadow-md transition-transform duration-300 hover:scale-110 hover:bg-[var(--color-secondary)] hover:text-white focus:ring-4 focus:ring-[var(--color-secondary)] active:bg-[var(--color-primary)] ${
+        mood === name ? "ring-4 ring-[var(--color-primary)]" : ""
+      }`}
+    >
+      {emoji}
+    </button>
+  ))}
+</div>
+
+      
       <h4 className="mt-6 text-lg text-[var(--color-text)] leading-relaxed">
         Let your thoughts flow freely—this is a safe and gentle space for you to express whatever is on your heart 💚
       </h4>

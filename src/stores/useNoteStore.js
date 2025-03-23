@@ -8,7 +8,7 @@ const useNotesStore = create(
       fav: [],
 
       // Add a new note
-      addNote: (text, mood) =>
+      addNote: (text, mood="Neutral") =>
         set((state) => ({
           notes: [
             ...state.notes,
