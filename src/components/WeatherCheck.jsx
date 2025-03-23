@@ -40,10 +40,12 @@ const WeatherCheck = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (location.trim()) fetchWeather(location);
+    setLocation("")
   };
 
   return (
     <>
+    <p className="text-base sm:text-lg md:text-xl font-Mono text-[var(--color-accent)] my-6 text-center">Enter the name of the location you'd like to check the weather for.</p>
       <form
         onSubmit={handleSubmit}
         className="flex mx-auto container justify-center mt-2 max-w-3xl mt-4"
