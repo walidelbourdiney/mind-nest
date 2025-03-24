@@ -69,15 +69,7 @@ const Journaling = () => {
       </h1>
 
       <h3 className="text-lg text-[var(--color-text)] mb-4">How do you feel right now?</h3>
-      <p className="mt-4 text-lg text-[var(--color-accent)]">
-      {
-  mood === "Neutral"
-    ? "If you're feeling neutral, that's okay. You can start writing your journal right away, or choose an emoji that resonates with how you're feeling."
-    : mood
-    ? `You're feeling ${mood.toLowerCase()}`
-    : "Tap an emoji to share your mood"
-    }
-      </p>
+      
 
       <div className="flex flex-wrap justify-center gap-4 p-4 bg-[var(--color-bg-transparent)] rounded-lg shadow-md">
   {feelings.map(({ name , emoji }) => (
@@ -92,7 +84,18 @@ const Journaling = () => {
     </button>
   ))}
 </div>
+<div className="w-4/5 h-0.5 bg-primary my-3 mx-auto"></div>
+<p className="mt-4 text-lg text-[var(--color-accent)] w-4/5 mx-auto">
+      {
+  mood === "Neutral"
+    ? "If you're feeling neutral, that's okay. You can start writing your journal right away, or choose an emoji that resonates with how you're feeling."
+    : mood
+    ? `You're feeling ${mood.toLowerCase()}`
+    : "Tap an emoji to share your mood"
+    }
+      </p>
 
+      <div className="w-4/5 h-0.5 bg-primary my-3 mx-auto"></div>
       
       <h4 className="mt-6 text-lg text-[var(--color-text)] leading-relaxed">
         Let your thoughts flow freely—this is a safe and gentle space for you to express whatever is on your heart 💚
