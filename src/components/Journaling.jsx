@@ -49,10 +49,12 @@ const Journaling = () => {
     if (!entry.trim()) return alert("Please enter a journal entry!");
     setLoading(true);
     try {
+
       const aiResponse = await analyzeJournalEntry(entry);
       setResponse(aiResponse);
       addNote(aiResponse, mood);
       setEntry("");
+      setFavorites(false);
 
     } catch (error) {
       console.error("AI Error:", error);
@@ -69,7 +71,7 @@ const Journaling = () => {
       </h1>
 
       <h3 className="text-lg text-[var(--color-text)] mb-4">How do you feel right now?</h3>
-      <p className="mt-4 text-lg text-[var(--color-accent)]">
+      <p className="my-6 text-lg text-[var(--color-accent)]">
       {
   mood === "Neutral"
     ? "If you're feeling neutral, that's okay. You can start writing your journal right away, or choose an emoji that resonates with how you're feeling."

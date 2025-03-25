@@ -3,6 +3,8 @@ import ReactMarkdown from "react-markdown";
 import useNotesStore from "../stores/useNoteStore";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 import { format } from "date-fns"; 
+import { FaHeart } from "react-icons/fa";
+
 
 const JournalingHistory = () => {
   const feelings = [
@@ -15,8 +17,10 @@ const JournalingHistory = () => {
     { name: "Neutral", emoji: "😐" },
   ];
 
-  const { deleteNote, notes, clearNotes } = useNotesStore();
+  const { deleteNote, notes, clearNotes, addFav } = useNotesStore();
   const [selectedMood, setSelectedMood] = useState("");
+    const [favorites, setFavorites] = useState(false);
+   
 
   const filteredElements = selectedMood
     ? notes.filter((note) => note.mood === selectedMood)
@@ -97,9 +101,19 @@ const JournalingHistory = () => {
                 key={note.id}
                 className="bg-[var(--color-bg)] shadow-lg rounded-lg p-6 text-left transition-all duration-300 hover:shadow-2xl"
               >
+                <div className="flex justify-between items-center p-4">
                 <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
                   {note.mood}
                 </h3>
+                 <FaHeart
+                              className={`cursor-pointer text-2xl transition ${favorites ? "text-red-500" : "text-gray-400"}`}
+                              onClick={() => {
+                                if (!favorites) {
+                                  setFavorites(true);
+                                  addFav(note.text, note.mood);
+                                }
+                              }}
+                            /> </div>
                 <div className="prose max-w-none text-[var(--color-text)] px-4">
                   <ReactMarkdown>{note.text}</ReactMarkdown>
                 </div>
