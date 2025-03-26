@@ -17,9 +17,9 @@ const JournalingHistory = () => {
     { name: "Neutral", emoji: "😐" },
   ];
 
-  const { deleteNote, notes, clearNotes, addFav, fav } = useNotesStore();
+  const { deleteNote, notes, clearNotes, addFav } = useNotesStore();
   const [selectedMood, setSelectedMood] = useState("");
-  const [favoritedNotes, setFavoritedNotes] = useState(new Set());
+  const [favoritedNoteIds, setFavoritedNoteIds] = useState([]);
 
   const filteredElements = selectedMood
     ? notes.filter((note) => note.mood === selectedMood)
@@ -38,8 +38,8 @@ const JournalingHistory = () => {
   const COLORS = ["#004225", "#007a5e", "#c5a880", "#f8f9f3", "#1c1c1c", "#8f8f8f"];
 
   const handleFavorite = (noteId, noteText, noteMood) => {
-    if (!favoritedNotes.has(noteId)) {
-      setFavoritedNotes(prev => new Set([...prev, noteId]));
+    if (!favoritedNoteIds.includes(noteId)) {
+      setFavoritedNoteIds([...favoritedNoteIds, noteId]);
       addFav(noteText, noteMood);
     }
   };
@@ -112,7 +112,7 @@ const JournalingHistory = () => {
                     {note.mood}
                   </h3>
                   <FaHeart
-                    className={`cursor-pointer text-2xl transition ${favoritedNotes.has(note.id) ? "text-red-500" : "text-gray-400"}`}
+                    className={`cursor-pointer text-2xl transition ${favoritedNoteIds.includes(note.id) ? "text-red-500" : "text-gray-400"}`}
                     onClick={() => handleFavorite(note.id, note.text, note.mood)}
                   />
                 </div>
