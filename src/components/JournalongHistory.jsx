@@ -17,10 +17,9 @@ const JournalingHistory = () => {
     { name: "Neutral", emoji: "😐" },
   ];
 
-  const { deleteNote, notes, clearNotes, addFav } = useNotesStore();
+  const { deleteNote, notes, clearNotes, addFav, fav } = useNotesStore();
   const [selectedMood, setSelectedMood] = useState("");
-    const [favorites, setFavorites] = useState(false);
-   
+  const [favoritedNotes, setFavoritedNotes] = useState(new Set());
 
   const filteredElements = selectedMood
     ? notes.filter((note) => note.mood === selectedMood)
@@ -37,6 +36,13 @@ const JournalingHistory = () => {
   }));
 
   const COLORS = ["#004225", "#007a5e", "#c5a880", "#f8f9f3", "#1c1c1c", "#8f8f8f"];
+
+  const handleFavorite = (noteId, noteText, noteMood) => {
+    if (!favoritedNotes.has(noteId)) {
+      setFavoritedNotes(prev => new Set([...prev, noteId]));
+      addFav(noteText, noteMood);
+    }
+  };
 
   return (
     <div className="flex flex-col container justify-center items-center mx-auto gap-6 p-4">
@@ -102,18 +108,14 @@ const JournalingHistory = () => {
                 className="bg-[var(--color-bg)] shadow-lg rounded-lg p-6 text-left transition-all duration-300 hover:shadow-2xl"
               >
                 <div className="flex justify-between items-center p-4">
-                <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
-                  {note.mood}
-                </h3>
-                 <FaHeart
-                              className={`cursor-pointer text-2xl transition ${favorites ? "text-red-500" : "text-gray-400"}`}
-                              onClick={() => {
-                                if (!favorites) {
-                                  setFavorites(true);
-                                  addFav(note.text, note.mood);
-                                }
-                              }}
-                            /> </div>
+                  <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
+                    {note.mood}
+                  </h3>
+                  <FaHeart
+                    className={`cursor-pointer text-2xl transition ${favoritedNotes.has(note.id) ? "text-red-500" : "text-gray-400"}`}
+                    onClick={() => handleFavorite(note.id, note.text, note.mood)}
+                  />
+                </div>
                 <div className="prose max-w-none text-[var(--color-text)] px-4">
                   <ReactMarkdown>{note.text}</ReactMarkdown>
                 </div>
